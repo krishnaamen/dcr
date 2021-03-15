@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Title</title>
+
+    <style>
+        body {
+            background-color: cyan;
+        }
+        div {
+
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+
+            background-color: #dddddd;
+            border-collapse: collapse;
+            box-shadow: purple;
+            padding: 5%;
+            margin-top: 10%;
+
+        }
+        p{
+            color: darkblue;
+            font-weight: bold;
+            font-family: "Courier New";
+        }
+    </style>
+
+</head>
+<body>
+<div>
+    <h1 style="text-align: center"> Daily work Schedule </h1>
+<label>Enter time </label>
+<input type="time" id="time">
+<label>Enter task </label>
+<input type="text" id="task">
+<button onclick="writeMe()"> add </button>
+<hr>
+<br>
+
+
+<p id="p1"></p>
+    <hr>
+    <a style="float: right" class="nav-link" th:href="@{/dashboard}"><button>Back to Dashboard</button></a>
+<button style="float:left" onclick="printDiv(p1)"> print </button>
+</div>
+<script>
+ function writeMe() {
+
+
+         var node = document.createElement("LI");
+         var textnode = document.createTextNode((document.getElementById("time").value +"----------->"+document.getElementById("task").value));
+         node.appendChild(textnode);
+         document.getElementById("p1").appendChild(node);
+         document.getElementById("task").value="";
+
+
+ }
+
+ function printDiv(p1) {
+     var printContents = document.getElementById("p1").innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+ }
+
+</script>
+</body>
+</html>
+
+
+
+
+

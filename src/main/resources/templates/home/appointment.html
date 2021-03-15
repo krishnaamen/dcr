@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Create an appointment </title>
+
+    <style>
+        body {
+            background-color: cyan;
+        }
+        div {
+
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+
+            background-color: #dddddd;
+            border-collapse: collapse;
+            box-shadow: purple;
+            padding: 5%;
+            margin-top: 10%;
+
+        }
+        p{
+            color: darkblue;
+            font-weight: bold;
+            font-family: "Courier New";
+        }
+    </style>
+
+</head>
+<body>
+<div>
+    <h1 style="text-align: center"> Daily work Schedule </h1>
+    <label>Date</label>
+    <input type="date" id="date">
+    <label>Enter time </label>
+    <input type="time" id="time">
+    <label> Child name </label>
+    <input type="text" id="child_name" placeholder="child name">
+    <label> parent name </label>
+    <input type="text" id="parent_name" placeholder="parent name">
+    <label> phone Number </label>
+    <input type="number" id="contact_number" placeholder="contact number">
+    <button onclick="writeMe()"> add </button>
+    <hr>
+    <br>
+
+
+    <p id="p1"></p>
+    <hr>
+    <a style="float: right" class="nav-link" th:href="@{/dashboard}"><button>Back to Dashboard</button></a>
+    <button style="float:left" onclick="printDiv(p1)"> print </button>
+</div>
+<script>
+    function writeMe() {
+        var node = document.createElement("LI");
+        var textnode = document.createTextNode(("   Date:   "+document.getElementById("date").value +"    \nTime:  "+document.getElementById("time").value+"   Chid: "+document.getElementById("child_name").value+"  Parent:   "+document.getElementById("parent_name").value+" phone:    "+document.getElementById("contact_number").value+"    Email: "+document.getElementById("contact_number").value));
+        node.appendChild(textnode);
+        document.getElementById("p1").appendChild(node);
+        document.getElementById("task").value="";
+
+
+    }
+
+    function printDiv(p1) {
+        var printContents = document.getElementById("p1").innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
+</script>
+</body>
+</html>
+
+
+
+
+

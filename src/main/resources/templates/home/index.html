@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Title</title>
+    <style>
+        body {
+            background-color: cyan;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            margin:auto;
+        }
+
+        td, th {
+            border: 5px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th{
+            background-color: red;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #00dd00;
+        }
+        tr:nth-child(even) {
+            background-color: #dddd00;
+        }
+        .divClass {
+            margin-top: 20px;
+            display: table;
+            margin: auto;
+            width:auto;
+            border: 3px solid green;
+            padding: 10px;
+            background-color: #dddddd;
+            border-collapse: collapse;
+            box-shadow: purple;
+
+
+        }
+    </style>
+</head>
+<body>
+<div class="divClass">
+    <div id="maindiv">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Age</th>
+                <th>Date of birth</th>
+                <th>Contact number</th>
+                <th>Parent name</th>
+            </tr>
+            <tr th:each="child : ${childrenList}">
+                <td th:text="${child.id}"></td>
+                <td th:text="${child.first_name}"></td>
+                <td th:text="${child.last_name}"></td>
+                <td th:text="${child.age}"></td>
+                <td th:text="${child.birth_date}"></td>
+                <td th:text="${child.contact_number}"></td>
+                <td th:text="${child.parent_name}"></td>
+            </tr>
+
+        </table>
+    </div>
+    <hr>
+    <span class="btm">
+        <a style="align-content: center;float: left" class="nav-link" th:href="@{/dashboard}"><button><h3>Back to Dashboard</h3></button></a>
+        <button style="float: right" onclick="window.printDiv(maindiv)"><h3>Print List</h3></button>
+    </span>
+    <hr>
+
+</div>
+
+<script>
+    function printDiv(maindiv) {
+        var printContents = document.getElementById("maindiv").innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+</body>
+</html>

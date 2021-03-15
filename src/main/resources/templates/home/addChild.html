@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Add child</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 5px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th{
+            background-color: red;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #00dd00;
+        }
+        tr:nth-child(even) {
+            background-color: #dddd00;
+        }
+        .delete{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+</table><h1>Add Child</h1>
+<form method="post" action="/create">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>birth_date</th>
+            <th>Contact number</th>
+            <th>Parent name</th>
+
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td><input type="number" name="id"></td>
+            <td><input type="text" name="first_name"></td>
+            <td><input type="text" name="last_name"></td>
+            <td><input type="number" name="age"></td>
+            <td><input type="date" name="birth_date"></td>
+            <td><input type="text" name="contact_number"></td>
+            <td><input type="text" name="parent_name"></td>
+
+            <td><input type="submit" value="Create"></td>
+        </tr>
+    </table>
+
+</form>
+<a class="nav-link" th:href="@{/dashboard}"><button>Back to Dashboard</button></a>
+</body>
+</html>

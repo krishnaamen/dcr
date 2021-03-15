@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Add to Waiting list</title>
+    <style>
+        .main {
+            height:50%;
+            width: 50%;
+            display: table;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            border: 3px solid green;
+            background-color: #dddddd;
+            border-collapse: collapse;
+            box-shadow: purple;
+
+
+        }
+        label{
+            align-content: center;
+            font-size:large;
+            font-weight: bold;
+            color: darkblue;
+            margin-left: 10px;
+
+        }
+        button{
+            margin-left:10px;
+            align-self: center;
+        }
+        body{
+            background-color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <h1 style="text-align: center"> Add to waiting List</h1>
+    <table>
+    <form method="post" action="/createList">
+        <div class="form-group">
+            <label for="formGroupExampleInput1">id</label>
+            <input type="number" class="form-control" id="formGroupExampleInput1" name="id" placeholder="enter id">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Child name</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="child_name" placeholder="enter child name">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput3">Parents name</label>
+            <input type="text" class="form-control" id="formGroupExampleInput3" name="parent_name" placeholder="enter parent name">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput4">contact number</label>
+            <input type="text" class="form-control" id="formGroupExampleInput4" name="contact_number" placeholder="contact number">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+
+        </div>
+
+        <br>
+        <button style="float: left" type="submit" class="btn btn-primary"value="CreateList">Submit</button>
+    </form>
+    </table>
+
+    <a style="float: right" th:href="@{/dashboard}"><button>Back to Dashboard</button></a>
+</div>
+</body>
+</html>

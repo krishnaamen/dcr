@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Title</title>
+    <style>
+        body{
+            background-color: #88bdbc;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 5px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th{
+            background-color: red;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #00dd00;
+        }
+        tr:nth-child(even) {
+            background-color: #dddd00;
+        }
+        div {
+            display: table;
+            margin: auto;
+            width:auto;
+            border: 3px solid green;
+            padding: 10px;
+            background-color: #dddddd;
+            border-collapse: collapse;
+            box-shadow: purple;
+        }
+        .btm{
+            background-color: plum;
+            border-collapse: collapse;
+            box-shadow: purple;
+        }
+        h3{
+            color:darkblue;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Contact number</th>
+        <th>Parent Name</th>
+    </tr>
+    <tr th:each="child : ${phoneList}">
+
+        <td th:text="${child.first_name} +' '+${child.last_name }"></td>
+        <td th:text="${child.contact_number}"></td>
+        <td th:text="${child.parent_name}"></td>
+    </tr>
+
+</table>
+    <hr>
+    <span class="btm">
+        <a style="align-content: center;float: left" class="nav-link" th:href="@{/dashboard}"><button><h3>Back to Dashboard</h3></button></a>
+        <button style="float: right" onclick="window.print()"><h3>Print List</h3></button>
+    </span>
+    <hr>
+</div>
+
+
+</body>
+</html>

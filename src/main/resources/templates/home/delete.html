@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Delete Child Information</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width:auto;
+            height: auto;
+        }
+
+        td, th {
+            border: 5px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th{
+            background-color: red;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #00dd00;
+        }
+        tr:nth-child(even) {
+            background-color: #dddd00;
+        }
+        .delete{
+            color: red;
+        }
+        div {
+            display: table;
+            margin: auto;
+            width:auto;
+            border: 3px solid green;
+            padding: 10px;
+            background-color: #dddddd;
+            border-collapse: collapse;
+            box-shadow: purple;
+
+
+        }
+    </style>
+</head>
+<body>
+<div>
+</table><h1>Delete Child Information</h1>
+<form method="post" action="/delete">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td><input type="number" name="id"></td>
+            <td><input type="submit" value="Delete"></td>
+        </tr>
+    </table>
+
+</form>
+<a class="nav-link" th:href="@{/dashboard}"><button>Back to Dashboard</button></a>
+</div>
+</body>
+</html>

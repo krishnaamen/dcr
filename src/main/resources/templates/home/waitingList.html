@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Title</title>
+    <style>
+        body {
+            background-color: cyan;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            margin:auto;
+        }
+
+        td, th {
+            border: 5px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th{
+            background-color: red;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #00dd00;
+        }
+        tr:nth-child(even) {
+            background-color: #dddd00;
+        }
+        div {
+            display: table;
+            margin: auto;
+            width:auto;
+            border: 3px solid green;
+            padding: 10px;
+            background-color: #dddddd;
+            border-collapse: collapse;
+            box-shadow: purple;
+
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Child name</th>
+            <th>Parent name</th>
+            <th>Contact number </th>
+            <th>Email</th>
+
+        </tr>
+        <tr th:each="wait : ${waitingLists}">
+            <td th:text="${wait.id}"></td>
+            <td th:text="${wait.child_name}"></td>
+            <td th:text="${wait.parent_name}"></td>
+            <td th:text="${wait.contact_number}"></td>
+            <td th:text="${wait.email}"></td>
+        </tr>
+
+    </table>
+    <hr>
+    <span class="btm">
+        <a style="align-content: center;float: left" class="nav-link" th:href="@{/dashboard}"><button><h3>Back to Dashboard</h3></button></a>
+        <button style="float: right" onclick="window.print()"><h3>Print List</h3></button>
+    </span>
+    <hr>
+</div>
+</body>
+</html>
