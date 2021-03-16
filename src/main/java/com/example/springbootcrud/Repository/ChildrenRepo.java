@@ -40,7 +40,7 @@ public class ChildrenRepo implements IChildrenRepo{
     @Override
     public Children updateChildren(Children children) {
         String sqlQuery = "update Children set " +
-                "first_name = ?, last_name = ?, age = ?, birth_date = ?, contact_number = ?,parent_name =?" +
+                "first_name = ?, last_name = ?, age = ?, birth_date = ?, contact_number = ?,parent_name =?"+
                 "where id = ?";
         jdbcTemplate.update(sqlQuery
                 , children.getFirst_name()
@@ -48,8 +48,8 @@ public class ChildrenRepo implements IChildrenRepo{
                 , children.getAge()
                 , children.getBirth_date()
                 , children.getContact_number()
-                , children.getId()
-                ,children.getParent_name());
+                ,children.getParent_name()
+                , children.getId());
         return null;
     }
 
