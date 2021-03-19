@@ -14,6 +14,7 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+    int updateId;
     @Autowired
     IChildrenService iChildrenService;
 
@@ -42,6 +43,7 @@ public class HomeController {
 
     }
 
+
     @PostMapping("/create")
     public String create(@ModelAttribute Children children) {
         iChildrenService.addChildren(children);
@@ -52,16 +54,50 @@ public class HomeController {
         iChildrenService.addWaitingList(waitingList);
         return "redirect:/waitingList";
     }
-    @PostMapping("/update")
-    public String update(@ModelAttribute Children children) {
+    @PostMapping("/updateHome")
+    public String saveEmployee(@ModelAttribute("children") Children children) {
+
         iChildrenService.updateChildren(children);
-        return "redirect:/home";
+        return "redirect:/updateHome";
     }
+    @PostMapping("/delete")
+    public String deleteMe(@ModelAttribute("children") Children children) {
+
+        this.iChildrenService.deleteChildren(children.getId());
+        return "redirect:/updateHome";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteMe(@PathVariable(value = "id") int id){
+        iChildrenService.deleteChildren(id);
+        return("redirect:/updateHome");
+    }
+
+    @GetMapping("/updateHome/{id}")
+    public String showFormForUpdate(@PathVariable ( value = "id") int id, Model md) {
+        System.out.println(id);
+        // get employee from the service
+        Children children = iChildrenService.fetchSingleChild(id);
+
+        // set employee as a model attribute to pre-populate the form
+        md.addAttribute("children", children);
+        return "home/update";
+    }
+
+
+
+
+
+
+/*
+
     @PostMapping("/delete")
     public String Delete(@ModelAttribute Children children) {
         iChildrenService.deleteChildren(children.getId());
         return "redirect:/home";
     }
+
+ */
     @GetMapping("/addWaitingList")
     public String AddWaitingList(){
         return("home/addWaitingList");
@@ -74,17 +110,15 @@ public class HomeController {
      public String AddChild(){
         return("home/addChild");
     }
-    @GetMapping("/update")
-    public String Update(){
-        return("home/update");
+    @GetMapping("/updateHome")
+    public String Update(Model model){
+        List<Children> childrenList = iChildrenService.fetchAll();
+        model.addAttribute("childrenList", childrenList);
+        return("home/updateHome");
     }
     @GetMapping("/schedule")
     public String MakeSchedule(){
         return("home/schedule");
-    }
-    @GetMapping("/delete")
-    public String deleteMe(){
-        return("home/delete");
     }
     @GetMapping("/dashboard")
     public String back(){

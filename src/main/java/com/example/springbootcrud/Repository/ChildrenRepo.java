@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 @Repository
 public class ChildrenRepo implements IChildrenRepo{
@@ -17,7 +19,6 @@ public class ChildrenRepo implements IChildrenRepo{
     public List<Children> fetchAll() {
         String sql = "Select * from Children";
         RowMapper<Children> rowMapper = new BeanPropertyRowMapper<>(Children.class);
-        System.out.println("ChildrenRepo");
         return jdbcTemplate.query(sql,rowMapper);
     }
 
@@ -25,15 +26,37 @@ public class ChildrenRepo implements IChildrenRepo{
     public List<Children> fetchInfo() {
         String sql = "Select first_name,last_name,contact_number,parent_name from Children";
         RowMapper<Children> rowMapper = new BeanPropertyRowMapper<>(Children.class);
-        System.out.println("ChildrenRepo");
         return jdbcTemplate.query(sql,rowMapper);
 
     }
 
     @Override
+    public Children fetchSingleChild(int id) {
+        String sql = "Select * from Children where id =?";
+        return this.jdbcTemplate.queryForObject(sql, new RowMapper<Children>(){
+            @Override
+            public Children mapRow(ResultSet rs, int rownum) throws SQLException
+            {
+                Children children = new Children();
+                children.setId(rs.getInt(1));
+                children.setFirst_name(rs.getString(2));
+                children.setLast_name(rs.getString(3));
+                children.setAge(rs.getInt(4));
+                children.setBirth_date(rs.getDate(5));
+                children.setContact_number(rs.getString(6));
+                children.setParent_name(rs.getString(7));
+                return children;
+            }},id);
+
+
+            }
+
+
+
+    @Override
     public Children addChildren(Children children) {
-        String sql = "Insert into Children(id,first_name,last_name,age,birth_date,contact_number,parent_name ) values(?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql,children.getId(),children.getFirst_name(),children.getLast_name(),children.getAge(),children.getBirth_date(),children.getContact_number(),children.getParent_name());
+        String sql = "Insert into Children(first_name,last_name,age,birth_date,contact_number,parent_name ) values(?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,children.getFirst_name(),children.getLast_name(),children.getAge(),children.getBirth_date(),children.getContact_number(),children.getParent_name());
         return null;
     }
 
@@ -69,8 +92,8 @@ public class ChildrenRepo implements IChildrenRepo{
 
     @Override
     public WaitingList addWaitingList(WaitingList waitingList) {
-        String sql = "Insert into waiting_List(id,child_name,parent_name,contact_number,email ) values(?,?,?,?,?)";
-        jdbcTemplate.update(sql,waitingList.getId(),waitingList.getChild_name(),waitingList.getParent_name(),waitingList.getContact_number(),waitingList.getEmail());
+        String sql = "Insert into waiting_List(child_name,parent_name,contact_number,email ) values(?,?,?,?)";
+        jdbcTemplate.update(sql,waitingList.getChild_name(),waitingList.getParent_name(),waitingList.getContact_number(),waitingList.getEmail());
         return null;
 
     }

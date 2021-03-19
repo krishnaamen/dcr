@@ -23,6 +23,11 @@ public class ChildrenService implements IChildrenService{
     }
 
     @Override
+    public Children fetchSingleChild(int id) {
+        return iChildrenRepo.fetchSingleChild(id);
+    }
+
+    @Override
     public Children addChildren(Children children) {
         return iChildrenRepo.addChildren(children);
     }

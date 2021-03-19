@@ -1,65 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Add child</title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
+    <meta charset="ISO-8859-1">
+    <title>Employee Management System</title>
 
-        td, th {
-            border: 5px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th{
-            background-color: red;
-        }
-
-        tr:nth-child(odd) {
-            background-color: #00dd00;
-        }
-        tr:nth-child(even) {
-            background-color: #dddd00;
-        }
-        .delete{
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-</table><h1>Add Child</h1>
-<form method="post" action="/update">
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Age</th>
-            <th>birth_date</th>
-            <th>Contact number</th>
-            <th>Parent name</th>
+<div class="container">
+<marquee> <h1>Roskilde Daycare</h1></marquee>
+    <hr>
+    <h2>Update Child</h2>
 
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td><input type="number" name="id"></td>
-            <td><input type="text" name="first_name"></td>
-            <td><input type="text" name="last_name"></td>
-            <td><input type="number" name="age"></td>
-            <td><input type="date" name="birth_date"></td>
-            <td><input type="text" name="contact_number"></td>
-            <td><input type="text" name="parent_name"></td>
+    <form action="#" th:action="@{/updateHome}" th:object="${children}"
+          method="POST">
 
-            <td><input type="submit" value="Update"></td>
-        </tr>
-    </table>
 
-</form>
-<a class="nav-link" th:href="@{/dashboard}"><button>Back to Dashboard</button></a>
+        <input type="hidden" th:field="*{id}" />
+
+        <input type="text" th:field="*{first_name}" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{last_name}" class="form-control mb-4 col-4">
+
+        <input type="number" th:field="*{age}" class="form-control mb-4 col-4">
+        <input type="date" th:field="*{birth_date}" class="form-control mb-4 col-4">
+        <input type="number" th:field="*{contact_number}" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{parent_name}" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2"> Update Children</button>
+    </form>
+
+    <hr>
+
+    <a style="align-content: center;float: left" class="nav-link" th:href="@{/dashboard}"><button><h3>Back to Dashboard</h3></button></a>
+</div>
 </body>
 </html>

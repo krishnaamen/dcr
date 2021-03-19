@@ -1,11 +1,14 @@
 package com.example.springbootcrud.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class WaitingList {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String child_name;
     private String parent_name;
