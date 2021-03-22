@@ -102,10 +102,16 @@ public class HomeController {
     public String AddWaitingList(){
         return("home/addWaitingList");
     }
+
+
     @GetMapping("/")
     public String Login(){
         return "home/login";
     }
+
+
+
+
     @GetMapping("/addChild")
      public String AddChild(){
         return("home/addChild");

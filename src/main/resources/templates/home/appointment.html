@@ -27,22 +27,37 @@
             font-weight: bold;
             font-family: "Courier New";
         }
+        label{
+            color: brown;
+            font-family: "Al Nile";
+            font-weight: bold;
+
+        }
+
     </style>
 
 </head>
 <body>
 <div>
-    <h1 style="text-align: center"> Daily work Schedule </h1>
+    <h1 style="text-align: center"> Create an appointment </h1>
+    <hr>
     <label>Date</label>
     <input type="date" id="date">
+    <hr>
     <label>Enter time </label>
     <input type="time" id="time">
+    <hr>
     <label> Child name </label>
     <input type="text" id="child_name" placeholder="child name">
+    <hr>
     <label> parent name </label>
     <input type="text" id="parent_name" placeholder="parent name">
+    <hr>
     <label> phone Number </label>
     <input type="number" id="contact_number" placeholder="contact number">
+    <hr>
+    <label> Email </label>
+    <input type="email" id="email" placeholder="email">
     <button onclick="writeMe()"> add </button>
     <hr>
     <br>
@@ -56,7 +71,7 @@
 <script>
     function writeMe() {
         var node = document.createElement("LI");
-        var textnode = document.createTextNode(("   Date:   "+document.getElementById("date").value +"    \nTime:  "+document.getElementById("time").value+"   Chid: "+document.getElementById("child_name").value+"  Parent:   "+document.getElementById("parent_name").value+" phone:    "+document.getElementById("contact_number").value+"    Email: "+document.getElementById("contact_number").value));
+        var textnode = document.createTextNode(("   Date:   "+document.getElementById("date").value +"    \nTime:  "+document.getElementById("time").value+"   Chid: "+document.getElementById("child_name").value+"  Parent:   "+document.getElementById("parent_name").value+" phone:    "+document.getElementById("contact_number").value+"    Email: "+document.getElementById("email").value));
         node.appendChild(textnode);
         document.getElementById("p1").appendChild(node);
         document.getElementById("task").value="";
